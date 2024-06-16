@@ -1,22 +1,44 @@
+import TextField from "@/components/TextField";
+import { useSignUp } from "@/hooks/useSignUp";
+
 export default function Home() {
+  const { checkError, errors, onChange, onSubmit } = useSignUp();
+
   return (
-    <main>
-      <nav className="h-[7vh] border-4 flex items-center justify-between px-[20px]">
-        <div>1</div>
-        <div>2</div>
-      </nav>
-      <div className="flex border-4 border-red-500 h-[90vh] p-[20px]">
-        <div className="flex-1 border-4 border-green-500">Kiri</div>
-        <div className="flex-[4] border-4 border-violet-500">Tengah</div>
-        <div className="flex-1 border-4 border-yellow-500 overflow-y-scroll">
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-          <div className="border-4 border-green-600 h-20">Ini project</div>
-        </div>
-      </div>
+    <main className="flex justify-center  items-center h-screen  px-10">
+      <section className="max-w-[30rem] w-full border-4 p-4 rounded-xl">
+        <h2 className="text-center text-2xl font-bold">Sign Up</h2>
+        <form className="flex flex-col gap-y-5 mt-4">
+          <TextField
+            type="text"
+            label="Username"
+            name="username"
+            onChange={onChange}
+            error={checkError(errors, "username")}
+          />
+          <TextField
+            type="text"
+            label="Email"
+            name="email"
+            onChange={onChange}
+            error={checkError(errors, "email")}
+          />
+          <TextField
+            type="password"
+            label="Password"
+            name="password"
+            onChange={onChange}
+            error={checkError(errors, "password")}
+          />
+          <button
+            type="button"
+            onClick={onSubmit}
+            className="bg-green-600 text-white rounded-lg py-2"
+          >
+            Sign Up
+          </button>
+        </form>
+      </section>
     </main>
   );
 }
